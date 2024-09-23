@@ -88,7 +88,7 @@ public class baseballApp {
     public void mainMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("환영합니다! 원하시는 번홀를 입력하세요");
+            System.out.println("환영합니다! 원하시는 번호를 입력하세요");
             System.out.println("1. 게임 시작하기 2. 게임 기록 보기 3. 종료하기");
             int choice = sc.nextInt();
 
