@@ -20,6 +20,10 @@ public class MainMenu {
                 if (selectedDigit == 3 || selectedDigit == 4 || selectedDigit == 5) {
                     digit = selectedDigit;
                     System.out.println(digit + "자리수 난이도로 설정되었습니다.");
+                    BaseballGame game = new BaseballGame();
+                    game.setDigit(digit); //자릿수 설정
+                    game.inputNumber();
+                    gameRecord.addRecord(game.getAttemptCount()); // 시도 횟수 기록
                 } else {
                     System.out.println("잘못된 입력입니다. 3, 4, 5 중에서 선택하세요.");
                 }
