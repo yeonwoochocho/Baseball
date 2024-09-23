@@ -2,8 +2,8 @@ package BaseballHW.oop2;
 
 import java.util.Scanner;
 
-public // MainMenu 클래스 (프로그램의 실행 흐름 제어)
-class MainMenu {
+// MainMenu 클래스 (프로그램의 실행 흐름 제어)
+public class MainMenu {
     private GameRecord gameRecord = new GameRecord();
     private int digit = 3; //기본 자릿수는 3으로 설정
 

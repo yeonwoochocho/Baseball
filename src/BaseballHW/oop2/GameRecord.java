@@ -3,8 +3,8 @@ package BaseballHW.oop2;
 import java.util.ArrayList;
 import java.util.List;
 
-public // GameRecord 클래스 (게임 기록 관리)
-class GameRecord {
+// GameRecord 클래스 (게임 기록 관리)
+public class GameRecord {
     private List<Integer> records = new ArrayList<>();
 
     public void addRecord(int attempts) {

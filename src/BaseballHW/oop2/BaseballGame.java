@@ -2,6 +2,7 @@ package BaseballHW.oop2;
 
 import java.util.Scanner;
 
+//게임 구현
 public class BaseballGame extends Game {
 
     @Override
