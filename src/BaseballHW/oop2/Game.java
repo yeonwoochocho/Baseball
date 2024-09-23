@@ -6,14 +6,22 @@ import java.util.Scanner;
 
 // Game 추상 클래스 (난수 생성 및 입력 처리 포함)
 abstract class Game {
-    protected int[] numArr = new int[3]; // 정답 배열
-    protected int[] inputArr = new int[3]; // 사용자 입력 배열
+    protected int[] numArr; // 정답 배열
+    protected int[] inputArr; // 사용자 입력 배열
     protected int strike = 0;
     protected int ball = 0;
     protected int attemptCount = 0; // 시도 횟수 추적
+    protected int digit;
 
+    public void setDigit(int digit) {
+        this.digit = digit;
+        this.numArr = new int[digit];
+        this.inputArr = new int[digit];
+    }
     public abstract void random(); // 난수 생성
-    public abstract void inputNumber(); // 사용자 입력 및 게임 진행
+    public abstract void inputNumber();// 사용자 입력 및 게임 진행
+
+
 }
 
 // BaseballGame 클래스는 Game 추상 클래스를 상속하여 다형성 구현
@@ -30,7 +38,7 @@ class BaseballGame extends Game {
                 }
             }
         }
-        System.out.println("정답 숫자가 생성되었습니다.");
+        System.out.println(digit +"자리 정답 숫자가 생성되었습니다.");
     }
 
     @Override
@@ -40,7 +48,7 @@ class BaseballGame extends Game {
 
         while (true) {
             attemptCount++; // 시도 횟수 증가
-            System.out.println("정답 숫자를 입력하세요 (숫자는 Enter로 구분해주세요): ");
+            System.out.println(digit + "자리 정답 숫자를 입력하세요 (숫자는 Enter로 구분해주세요): ");
             for (int i = 0; i < inputArr.length; i++) {
                 int input = sc.nextInt();
                 if (input == 0) { // 0 입력 불가
@@ -75,8 +83,8 @@ class BaseballGame extends Game {
             }
 
             System.out.println(strike + " strike, " + ball + " ball 입니다.");
-            if (strike == 3) {
-                System.out.println("3 strike 축하합니다. 정답을 맞췄습니다.");
+            if (strike == digit) {
+                System.out.println(digit + "strike 축하합니다. 정답을 맞췄습니다.");
                 break;
             }
             strike = 0;
@@ -112,16 +120,27 @@ class GameRecord {
 // MainMenu 클래스 (프로그램의 실행 흐름 제어)
 class MainMenu {
     private GameRecord gameRecord = new GameRecord();
+    private int digit = 3; //기본 자릿수는 3으로 설정
 
     public void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("환영합니다! 원하시는 번호를 입력하세요");
-            System.out.println("1. 게임 시작하기 2. 게임 기록 보기 3. 종료하기");
+            System.out.println("0. 자리수 설정 1. 게임 시작하기 2. 게임 기록 보기 3. 종료하기");
             int choice = sc.nextInt();
 
-            if (choice == 1) {
+            if (choice == 0) {
+                System.out.println("설정하고자 하는 자리수를 입력하세요. (3, 4, 5)");
+                int selectedDigit = sc.nextInt();
+                if (selectedDigit == 3 || selectedDigit == 4 || selectedDigit == 5) {
+                    digit = selectedDigit;
+                    System.out.println(digit + "자리수 난이도로 설정되었습니다.");
+                } else {
+                    System.out.println("잘못된 입력입니다. 3, 4, 5 중에서 선택하세요.");
+                }
+            } else if (choice == 1) {
                 BaseballGame game = new BaseballGame();
+                game.setDigit(digit); //자릿수 설정
                 game.inputNumber();
                 gameRecord.addRecord(game.getAttemptCount()); // 시도 횟수 기록
             } else if (choice == 2) {
