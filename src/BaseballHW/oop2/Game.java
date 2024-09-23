@@ -11,7 +11,7 @@ abstract class Game {
     protected int strike = 0;
     protected int ball = 0;
     protected int attemptCount = 0; // 시도 횟수 추적
-    protected int digit;
+    protected int digit; //자릿수 선언
 
     public void setDigit(int digit) {
         this.digit = digit;
