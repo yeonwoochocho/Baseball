@@ -1,7 +1,7 @@
 package BaseballHW.oop;
 
 import java.util.Scanner;
-
+//Lv3 구현한 폴더
 public class BaseballApp {
     private int gameCount = 0; //게임 횟수
     private int totalAttempts = 0; //총 시도 횟수
